@@ -1,17 +1,16 @@
 <script setup>
 	import {reactive} from "vue";
-	import {login} from "@/services/accountService";
-	import {useRouter} from "vue-router";
+	import {login2} from "@/services/accountService";
+	import {login1} from "@/services/accountService";
+	
 	const state = reactive({
 		form: {
 			loginId: "",
 			loginPw: "",
 		}
 	});
-	const router = useRouter();
-	const submit = async () => { // ③
-	  const res = await login(state.form);
-
+	const submit2 = async () => {
+	  const res = await login2(state.form);
 	  switch (res.status) {
 	    case 200:
 	      window.alert("로그인 성공!");
@@ -22,16 +21,29 @@
 	      break;
 	  }
 	};
+	const submit1 = async () => {
+	    const res = await login1(state.form);
+		switch (res.status) {
+		  case 200:
+		    window.alert("로그인 성공!");
+		    break;
+
+		  case 404:
+		    window.alert("입력하신 정보와 일치하는 회원이 없습니다.");
+		    break;
+		}
+	};
 </script>
 <template>
 	<div class="background">
 	<h3>Welcome!</h3>
 	<img src="../img/ui_1.png"/>
-	<form @submit.prevent="submit">
+	<form>
 	<table style="margin: 0 auto;">
 	<tr><td><strong>아이디</strong></td> <td><input id="loginId" placeholder="학번" v-model="state.form.loginId"></input></td></tr>
 	<tr><td><strong>비밀번호</strong></td> <td><input type="password" input id="loginPw" placeholder="비밀번호" v-model="state.form.loginPw"></input></td></tr>
-	<tr><td></td><td><button type="submit">로그인</button></td></tr>
+	<tr><td></td><td><button type="button" v-on:click="submit2">학생 로그인</button></td></tr>
+	<tr><td></td><td><button type="button" v-on:click="submit1">교수 로그인</button></td></tr>
 	</table>
 	</form>
 	</div>

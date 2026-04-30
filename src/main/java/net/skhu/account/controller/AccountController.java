@@ -29,22 +29,34 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/api/account/login")
-    public ResponseEntity<?> login(HttpServletRequest req, HttpServletResponse res, @RequestBody AccountLoginRequest loginReq) { // ⑥
+    @PostMapping("/api/account/login2")
+    public ResponseEntity<?> login2(HttpServletRequest req, HttpServletResponse res, @RequestBody AccountLoginRequest loginReq) {
         // 입력 값이 비어 있다면
         if (!StringUtils.hasLength(loginReq.getLoginId()) || !StringUtils.hasLength(loginReq.getLoginPw())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-        String output = accountHelper.login(loginReq, req, res);
-
+        String output = accountHelper.login2(loginReq, req, res);
         if (output == null) { // 로그인 실패 시
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(output, HttpStatus.OK);
     }
+    
+    @PostMapping("/api/account/login1")
+    public ResponseEntity<?> login1(HttpServletRequest req, HttpServletResponse res, @RequestBody AccountLoginRequest loginReq) {
+        // 입력 값이 비어 있다면
+        if (!StringUtils.hasLength(loginReq.getLoginId()) || !StringUtils.hasLength(loginReq.getLoginPw())) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        String output = accountHelper.login1(loginReq, req, res);
+        if (output == null) { // 로그인 실패 시
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }
+    
     @GetMapping("/api/account/check")
     public ResponseEntity<?> check(HttpServletRequest req) { // ⑦
         return new ResponseEntity<>(accountHelper.isLoggedIn(req), HttpStatus.OK);

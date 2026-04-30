@@ -6,8 +6,12 @@ export const join = (args) => { // ①
 };
 
 // 로그인
-export const login = (args) => { // ②
-    return axios.post("/v1/api/account/login", args).catch(e => e.response);
+export const login2 = (args) => { // ②
+    return axios.post("/v1/api/account/login2", args).catch(e => e.response);
+};
+
+export const login1 = (args) => { // ②
+    return axios.post("/v1/api/account/login1", args).catch(e => e.response);
 };
 
 // 로그인 여부 확인

@@ -8,7 +8,8 @@ import net.skhu.account.dto.AccountLoginRequest;
 public interface AccountHelper {
 	void join(AccountJoinRequest joinReq);
 	
-	String login(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res);
+	String login2(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res);
+	String login1(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res);
 	
 	Integer getMemberId(HttpServletRequest req);
 	

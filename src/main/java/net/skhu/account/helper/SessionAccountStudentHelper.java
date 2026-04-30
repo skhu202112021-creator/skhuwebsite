@@ -6,35 +6,46 @@ import net.skhu.account.dto.AccountJoinRequest;
 import net.skhu.account.dto.AccountLoginRequest;
 import net.skhu.account.etc.AccountConstants;
 import net.skhu.common.util.HttpUtils;
+import net.skhu.member.entity.Professor;
 import net.skhu.member.entity.Student;
+import net.skhu.member.service.ProfessorService;
 import net.skhu.member.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component // ①
-@RequiredArgsConstructor // ②
+@Component
+@RequiredArgsConstructor
 public class SessionAccountStudentHelper implements AccountHelper {
 
-    private final StudentService StudentService; // ③
+    private final StudentService StudentService;
+    private final ProfessorService ProfessorService;
 
     // 회원가입
     @Override
-    public void join(AccountJoinRequest joinReq) { // ④
+    public void join(AccountJoinRequest joinReq) {
         StudentService.save(joinReq.getName(), joinReq.getDepartment(), joinReq.getLoginId(), joinReq.getLoginPw());
     }
 
     // 로그인
     @Override
-    public String login(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res) { // ④
+    public String login2(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res) { // ④
         Student Student = StudentService.find(loginReq.getLoginId(), loginReq.getLoginPw());
-
         // 회원 데이터가 없으면
         if (Student == null) {
             return null;
         }
-
         HttpUtils.setSession(req, AccountConstants.MEMBER_ID_NAME, Student.getId());
         return Student.getLoginId();
+    }
+    @Override
+    public String login1(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res) { // ④
+        Professor Professor = ProfessorService.find(loginReq.getLoginId(), loginReq.getLoginPw());
+        // 회원 데이터가 없으면
+        if (Professor == null) {
+            return null;
+        }
+        HttpUtils.setSession(req, AccountConstants.MEMBER_ID_NAME, Professor.getId());
+        return Professor.getLoginId();
     }
 
     // 회원 아이디 조회
