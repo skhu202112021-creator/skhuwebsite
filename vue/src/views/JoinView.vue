@@ -44,12 +44,14 @@ const submit1 = async () => {
 		<h3>Welcome!</h3>
 		<img src="../img/ui_1.png"/>
 		<table style="margin: 0 auto;">
+			<tbody>
 			<tr><td><strong>이름</strong></td> <td><input id="nme" placeholder="이름" v-model="state.form.name"></input></td></tr>
 			<tr><td><strong>학과</strong></td> <td><input id="department" placeholder="학과" v-model="state.form.department"></input></td></tr>
 			<tr><td><strong>아이디</strong></td> <td><input type="input" input id="loginId" placeholder="아이디" v-model="state.form.loginId"></input></td></tr>
 			<tr><td><strong>비밀번호</strong></td> <td><input type="password" input id="loginPw" placeholder="비밀번호" v-model="state.form.loginPw"></input></td></tr>
 			<tr><td></td><td><button v-on:click="submit2()">학생 회원가입</button></td></tr>
 			<tr><td></td><td><button v-on:click="submit1()">교수 회원가입</button></td></tr>
+			</tbody>
 		</table>
       </form>
     </div>

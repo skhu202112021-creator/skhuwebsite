@@ -2,10 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import JoinView from '../views/JoinView.vue'
 import LoginTest from '../views/LoginTest.vue'
+import SugangView from '../views/SugangView.vue'
+import HomeView from '../views/HomeView.vue'
 const routes = [
     {
         path: '/',
-        name: 'home'
+        name: 'home',
+		component: HomeView
     },
     {
         path: '/login',
@@ -13,14 +16,14 @@ const routes = [
         component: LoginView
     },
 	{
-	   	path: '/logintest',
-	   	name: 'logintest',
-	   	component: LoginTest
-	},
-	{
 		path: '/join',
 		name: 'join',
 		component: JoinView
+	},
+	{
+		path: '/sugang',
+		name: 'sugang',
+		component: SugangView
 	}
 ]
 

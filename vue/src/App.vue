@@ -1,23 +1,50 @@
 <script setup>
 /* eslint-disable */
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 const disabled = ref(false)
 const show = ref(false)
+const showHeader = ref(true)
+const showSugang = ref(false)
 function warnDisabled() {
   disabled.value = true
   setTimeout(() => {
     disabled.value = false
   }, 1500)
 }
+import { useRoute } from 'vue-router'
+import { watch } from 'vue'
+
+const route = useRoute()
+
+// 경로가 바뀔 때마다 실행되는 감시자
+watch(() => route.path, (newPath) => {
+  if (newPath === '/') {
+    // 1. 메인으로 돌아오면 모든 상태 초기화
+    show.value = false;
+    showHeader.value = true;
+    showSugang.value = false;
+    disabled.value = false;
+  } else if (newPath === '/sugang') {
+    // 2. 수강신청 페이지일 때의 상태
+    showHeader.value = false;
+    showSugang.value = true;
+  } else {
+    // 3. 로그인, 회원가입 등 일반 페이지일 때
+    show.value = true;
+    showHeader.value = true;
+    showSugang.value = false;
+  }
+});
 </script>
 
 <template class="parent">
-<header>
+<header v-if="showHeader">
 <div class="all">
 <div class="header" :class="{ shake: disabled }">
   <button @click="warnDisabled"><img src="@/img/logo_w.png"></button>
   <div>
   <table>
+  <tbody>
   <tr><td>
   <router-link to="/login" @click="show = !show">
   		<img src="@/img/new_1_2.png">
@@ -30,13 +57,21 @@ function warnDisabled() {
     		<div class="menu">회원가입</div>
   </router-link>
   </td>
+  <td>
+    <router-link to="/sugang" @click="showHeader = !showHeader; showSugang = !showSugang">
+      		<img src="@/img/new_1_4.png">
+      		<div class="menu">수강신청</div>
+    </router-link>
+  </td>
   </tr>
+  </tbody>
   </table>
   </div>
 </div>
 <Transition name="c"><div v-show="show"><router-view style="display: block; text-align: center;"/></div></Transition>
 </div>
 </header>
+<Transition name="s"><div v-if="showSugang"><router-view style="display: block; text-align: center;"/></div></Transition>
 </template>
 
 <style scoped>
