@@ -22,10 +22,14 @@ public class SessionAccountStudentHelper implements AccountHelper {
 
     // 회원가입
     @Override
-    public void join(AccountJoinRequest joinReq) {
+    public void join2(AccountJoinRequest joinReq) {
         StudentService.save(joinReq.getName(), joinReq.getDepartment(), joinReq.getLoginId(), joinReq.getLoginPw());
     }
-
+    
+    @Override
+    public void join1(AccountJoinRequest joinReq) {
+        ProfessorService.save(joinReq.getName(), joinReq.getDepartment(), joinReq.getLoginId(), joinReq.getLoginPw());
+    }
     // 로그인
     @Override
     public String login2(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res) { // ④

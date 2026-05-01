@@ -18,14 +18,25 @@ public class AccountController {
 
     private final AccountHelper accountHelper; // ④
 
-    @PostMapping("/api/account/join")
-    public ResponseEntity<?> join(@RequestBody AccountJoinRequest joinReq) { // ⑤
+    @PostMapping("/api/account/join2")
+    public ResponseEntity<?> join2(@RequestBody AccountJoinRequest joinReq) { // ⑤
         // 입력 값이 비어 있다면
         if (!StringUtils.hasLength(joinReq.getName()) || !StringUtils.hasLength(joinReq.getLoginId()) || !StringUtils.hasLength(joinReq.getLoginPw())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        accountHelper.join(joinReq);
+        accountHelper.join2(joinReq);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/api/account/join1")
+    public ResponseEntity<?> join1(@RequestBody AccountJoinRequest joinReq) { // ⑤
+        // 입력 값이 비어 있다면
+        if (!StringUtils.hasLength(joinReq.getName()) || !StringUtils.hasLength(joinReq.getLoginId()) || !StringUtils.hasLength(joinReq.getLoginPw())) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        accountHelper.join1(joinReq);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

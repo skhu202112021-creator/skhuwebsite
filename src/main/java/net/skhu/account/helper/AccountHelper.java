@@ -6,7 +6,8 @@ import net.skhu.account.dto.AccountJoinRequest;
 import net.skhu.account.dto.AccountLoginRequest;
 
 public interface AccountHelper {
-	void join(AccountJoinRequest joinReq);
+	void join2(AccountJoinRequest joinReq);
+	void join1(AccountJoinRequest joinReq);
 	
 	String login2(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res);
 	String login1(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res);

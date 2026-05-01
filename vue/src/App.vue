@@ -16,17 +16,38 @@ function warnDisabled() {
 <div class="all">
 <div class="header" :class="{ shake: disabled }">
   <button @click="warnDisabled"><img src="@/img/logo_w.png"></button>
+  <div>
+  <table>
+  <tr><td>
   <router-link to="/login" @click="show = !show">
-  		<img style="display: block; margin: auto; margin-top: 50px;" src="@/img/new_1_2.png">
+  		<img src="@/img/new_1_2.png">
   		<div class="menu">로그인</div>
   </router-link>
+  </td>
+  <td>
+  <router-link to="/join" style="display: inline;" @click="show = !show">
+    		<img src="@/img/new_1_2.png">
+    		<div class="menu">회원가입</div>
+  </router-link>
+  </td>
+  </tr>
+  </table>
+  </div>
 </div>
-<Transition name="c"><div v-show="show"><router-view style="display: block; text-align: center;;"/></div></Transition>
+<Transition name="c"><div v-show="show"><router-view style="display: block; text-align: center;"/></div></Transition>
 </div>
 </header>
 </template>
 
 <style scoped>
+td{
+	width:25%;
+}
+table{
+	margin-top:50px;
+	margin-left:auto;
+	margin-right:auto;
+}
 .menu{
 	font-size: 20px;
 	@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&display=swap');
