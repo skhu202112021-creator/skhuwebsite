@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // ①
-@RequiredArgsConstructor // ②
-@RequestMapping("/v1") // ③
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/v1")
 public class AccountController {
 
-    private final AccountHelper accountHelper; // ④
+    private final AccountHelper accountHelper;
 
     @PostMapping("/api/account/join2")
     public ResponseEntity<?> join2(@RequestBody AccountJoinRequest joinReq) { // ⑤

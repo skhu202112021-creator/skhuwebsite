@@ -5,7 +5,7 @@ export const join2 = (args) => {
     return axios.post("/v1/api/account/join2", args).catch(e => e.response);
 };
 
-export const join1 = (args) => { // ①
+export const join1 = (args) => {
     return axios.post("/v1/api/account/join1", args).catch(e => e.response);
 };
 

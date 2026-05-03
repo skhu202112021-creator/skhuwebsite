@@ -10,6 +10,9 @@ import net.skhu.member.entity.Professor;
 import net.skhu.member.entity.Student;
 import net.skhu.member.service.ProfessorService;
 import net.skhu.member.service.StudentService;
+import net.skhu.subject.controller.SubjectController;
+import net.skhu.subject.repository.SubjectRepository;
+import net.skhu.subject.service.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +38,7 @@ public class SessionAccountStudentHelper implements AccountHelper {
     public String login2(AccountLoginRequest loginReq, HttpServletRequest req, HttpServletResponse res) { // ④
         Student Student = StudentService.find(loginReq.getLoginId(), loginReq.getLoginPw());
         // 회원 데이터가 없으면
+        
         if (Student == null) {
             return null;
         }

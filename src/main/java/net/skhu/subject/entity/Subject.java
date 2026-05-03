@@ -7,10 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import net.skhu.subject.dto.SubjectRead;
 
 @Getter
 @Entity
+@RequiredArgsConstructor
 @Table(name = "subjects")
 public class Subject {
 	@Id
@@ -29,13 +31,10 @@ public class Subject {
 	@Column(length = 3, nullable = false)
 	private Integer capacity;
 	
-	public SubjectRead toRead() {
-		return SubjectRead.builder()
-			.id(id)
-			.name(name)
-			.department(department)
-			.professor(professor)
-			.capacity(capacity)
-			.build();
+	public Subject(String name, String department, String professor, int capacity) {
+		this.name = name;
+		this.department = department;
+		this.professor = professor;
+		this.capacity = capacity;
 	}
 }
