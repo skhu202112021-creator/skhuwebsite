@@ -24,3 +24,7 @@ MVC 패턴을 준수합니다.
 ## 실행 파일
 
 데이터베이스 sql 파일 : 프로젝트 최상단 DB폴더 (skhu_create.sql, skhu_insert.sql)
+
+## 실행 방법
+Spring Boot 실행 후 Git bash 터미널로 vue 폴더에 들어가 npm run serve 실행.
+주소: localhost:3000
