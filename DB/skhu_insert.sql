@@ -7,4 +7,3 @@ insert into subjects (name, department, professor, capacity)
 values ('소프트웨어캡스톤디자인', '소프트웨어학과', 'professor1',30);
 insert into departments (name)
 values ('소프트웨어학과');
-select * from subjects;
