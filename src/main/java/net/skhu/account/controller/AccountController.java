@@ -19,7 +19,7 @@ public class AccountController {
     private final AccountHelper accountHelper;
 
     @PostMapping("/api/account/join2")
-    public ResponseEntity<?> join2(@RequestBody AccountJoinRequest joinReq) { // ⑤
+    public ResponseEntity<?> join2(@RequestBody AccountJoinRequest joinReq) {
         // 입력 값이 비어 있다면
         if (!StringUtils.hasLength(joinReq.getName()) || !StringUtils.hasLength(joinReq.getLoginId()) || !StringUtils.hasLength(joinReq.getLoginPw())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -30,7 +30,7 @@ public class AccountController {
     }
     
     @PostMapping("/api/account/join1")
-    public ResponseEntity<?> join1(@RequestBody AccountJoinRequest joinReq) { // ⑤
+    public ResponseEntity<?> join1(@RequestBody AccountJoinRequest joinReq) {
         // 입력 값이 비어 있다면
         if (!StringUtils.hasLength(joinReq.getName()) || !StringUtils.hasLength(joinReq.getLoginId()) || !StringUtils.hasLength(joinReq.getLoginPw())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -69,12 +69,12 @@ public class AccountController {
     }
     
     @GetMapping("/api/account/check")
-    public ResponseEntity<?> check(HttpServletRequest req) { // ⑦
+    public ResponseEntity<?> check(HttpServletRequest req) {
         return new ResponseEntity<>(accountHelper.isLoggedIn(req), HttpStatus.OK);
     }
 
     @PostMapping("/api/account/logout")
-    public ResponseEntity<?> logout(HttpServletRequest req, HttpServletResponse res) { // ⑧
+    public ResponseEntity<?> logout(HttpServletRequest req, HttpServletResponse res) {
         accountHelper.logout(req, res);
         return new ResponseEntity<>(HttpStatus.OK);
     }

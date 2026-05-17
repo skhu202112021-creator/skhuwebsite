@@ -1,6 +1,6 @@
 package net.skhu.subject.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -13,14 +13,14 @@ import net.skhu.subject.repository.SubjectRepository;
 public class BaseSubjectService implements SubjectService{
 	private final SubjectRepository SubjectRepository;
 	@Override
-	public void save(String name, String department, String professor, int capacity) {
+	public void save(String name, String department, String professor, String capacity) {
 		SubjectRepository.save(new Subject(name, department, professor, capacity));
 	}
 	
 	@Override
-	public Subject findByDepartment(String department) {
-		Optional<Subject> subjectDepartmentOptional = SubjectRepository.findByDepartment(department);
+	public List<Subject> findByDepartment(String department) {
+		List<Subject> subjectDepartmentOptional = SubjectRepository.findByDepartment(department);
 		
-		return subjectDepartmentOptional.orElse(null);
+		return subjectDepartmentOptional;
 	};
 }

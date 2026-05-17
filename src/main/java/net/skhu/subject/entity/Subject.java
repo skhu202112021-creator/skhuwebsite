@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.skhu.subject.dto.SubjectRead;
 
 @Getter
 @Entity
@@ -29,9 +28,9 @@ public class Subject {
 	private String professor;
 	
 	@Column(length = 3, nullable = false)
-	private Integer capacity;
+	private String capacity;
 	
-	public Subject(String name, String department, String professor, int capacity) {
+	public Subject(String name, String department, String professor, String capacity) {
 		this.name = name;
 		this.department = department;
 		this.professor = professor;
